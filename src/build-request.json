@@ -1,0 +1,194 @@
+{
+  "kind": "build_request",
+  "title": "Clothing design website with custom logo creator",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a responsive web app that lets a user design a clothing item by selecting a garment base (at minimum: T‑shirt, hoodie, cap) and customizing it with colors and placed elements on a 2D design canvas.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Make a website where you can design clothes and make your own logo"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can pick one of the supported garment bases (T‑shirt, hoodie, cap).",
+        "User can change at least one base color for the selected garment.",
+        "A design canvas is available with visible garment bounds/print area for placing elements.",
+        "UI works on mobile and desktop layouts without horizontal overflow."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement a logo maker tool that allows users to create a simple logo from text and basic shapes, export it, and use it inside the clothing design canvas. Include an option to upload an existing image as a logo.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "design clothes and make your own logo"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can create a logo from text (choose font, size, color) and at least two shape types (e.g., circle and rectangle) on a logo canvas.",
+        "User can export the created logo as a PNG with transparent background.",
+        "User can upload an image file (PNG/JPG/SVG) to use as a logo.",
+        "User can place the created or uploaded logo onto the clothing design canvas, move it, resize it, and rotate it."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add basic layer management for design elements (logos/text/shapes) placed on the clothing design canvas, including selecting an element, reordering layers (bring forward/send backward), duplicating, and deleting.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "design clothes"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can click/tap to select a placed element and see selection handles.",
+        "User can bring an element forward/backward in z-order.",
+        "User can duplicate an element and delete an element.",
+        "Layer changes are reflected immediately on the canvas."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Provide design project persistence: users can sign in with Internet Identity and save multiple named projects; each project stores garment type, base colors, and all placed elements (including embedded logo data or references) and can be reopened and edited later.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Make a website where you can design clothes and make your own logo"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can sign in/out with Internet Identity.",
+        "Signed-in user can create a new project, name it, and save it.",
+        "User can see a list of their saved projects and open one to restore the full design state.",
+        "User can delete a saved project.",
+        "Backend enforces per-user ownership (a user cannot read or modify another user’s projects)."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Add an export flow for clothing designs: users can export the final design as a PNG image at a consistent resolution, including the garment base and placed elements, and download it in the browser.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "design clothes"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can click an Export button to download a PNG.",
+        "Exported PNG includes the selected garment base and all placed elements as seen on screen.",
+        "Export resolution is consistent (define and use a fixed output size per garment, e.g., 2000x2000)."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Create a coherent visual theme for the app (colors, typography, spacing, component styling) and apply it consistently across the landing page, designer, logo maker, and project gallery. Avoid blue & purple as primary brand colors.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Make a website where you can design clothes and make your own logo"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All pages share a consistent design system (type scale, spacing, button styles, surfaces).",
+        "Primary theme is not blue/purple-dominant.",
+        "Key flows (start project, create logo, design garment, save, export) are visually clear and accessible (sufficient contrast for text/buttons)."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Add basic in-app guidance: provide a short onboarding tip panel (dismissible) in the designer that explains how to add a logo, move/resize, change colors, save, and export.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Make a website where you can design clothes and make your own logo"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Designer shows a short tip panel on first visit (per browser) and it can be dismissed.",
+        "Tips reference the actual controls present in the UI.",
+        "Dismissed state persists in local storage (or equivalent client persistence)."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Backend data model and APIs: implement Motoko types and CRUD methods to store user projects and project metadata, using stable storage to persist across upgrades.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Make a website where you can design clothes and make your own logo"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes methods to create, list, get, update, and delete projects for the calling principal.",
+        "Stored project includes: id, name, updatedAt, garmentType, baseColors, element list, and any embedded logo data needed to restore designs.",
+        "Data persists across canister upgrades using stable variables (and add migration.mo only if later schema changes require it)."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Use generated static garment base images as selectable templates (T‑shirt, hoodie, cap) and render them from frontend static assets (not via backend).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "design clothes"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Garment base images are stored under frontend/public/assets/generated and loaded directly by the frontend.",
+        "Selecting a garment swaps the underlying template image on the canvas without full page reload.",
+        "Templates have transparent background or consistent backdrop so placed logos remain clearly visible."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor with all logic in the main backend actor file; only add migration.mo when upgrading existing state requires it.",
+    "Do not edit files under frontend/src/components/ui or any paths listed as immutable in SYSTEM_CONTEXT; compose those components instead.",
+    "Use Internet Identity as the only authentication mechanism."
+  ],
+  "nonGoals": [
+    "E-commerce features (product checkout, payments, coupons, taxes, shipping).",
+    "Connecting to print-on-demand/manufacturing providers.",
+    "Real-time collaboration/multiplayer editing.",
+    "Third-party auth providers (Google/Facebook/GitHub/Auth0).",
+    "External databases or non-Motoko backend services."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Flat T‑shirt template illustration with transparent background (garment-tshirt.dim_2000x2000.png)",
+      "Flat hoodie template illustration with transparent background (garment-hoodie.dim_2000x2000.png)",
+      "Flat cap template illustration with transparent background (garment-cap.dim_2000x2000.png)"
+    ],
+    "edits": []
+  }
+}

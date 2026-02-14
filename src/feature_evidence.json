@@ -1,0 +1,200 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-responsive-web-app-that-lets-a-user-design-a-clothing-item-by-selecting-a-garment-base-at-minimum-t-shirt-hoodie-cap-and-customizing-it-with-colors-and-placed-elements-on-a-2d-design-canvas",
+      "featureTitle": "Create a responsive web app that lets a user design a clothing item by selecting a garment base (at minimum: T‑shirt, hoodie, cap) and customizing it with colors and placed elements on a 2D design canvas.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/designer/BaseColorPicker.tsx",
+        "frontend/src/components/designer/DesignCanvas2D.tsx",
+        "frontend/src/components/designer/GarmentSelector.tsx",
+        "frontend/src/main.tsx",
+        "frontend/src/pages/DesignerPage.tsx",
+        "frontend/src/pages/LandingPage.tsx",
+        "frontend/src/state/designerTypes.ts",
+        "frontend/src/state/useDesignerState.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-logo-maker-tool-that-allows-users-to-create-a-simple-logo-from-text-and-basic-shapes-export-it-and-use-it-inside-the-clothing-design-canvas-include-an-option-to-upload-an-existing-image-as-a-logo",
+      "featureTitle": "Implement a logo maker tool that allows users to create a simple logo from text and basic shapes, export it, and use it inside the clothing design canvas. Include an option to upload an existing image as a logo.",
+      "files": [
+        "frontend/src/components/designer/DesignCanvas2D.tsx",
+        "frontend/src/components/logo-maker/LogoCanvas2D.tsx",
+        "frontend/src/components/logo-maker/LogoControlsPanel.tsx",
+        "frontend/src/components/logo-maker/LogoExportButton.tsx",
+        "frontend/src/pages/LogoMakerPage.tsx",
+        "frontend/src/state/useDesignerState.ts",
+        "frontend/src/utils/imageImport.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-basic-layer-management-for-design-elements-logos-text-shapes-placed-on-the-clothing-design-canvas-including-selecting-an-element-reordering-layers-bring-forward-send-backward-duplicating-and-deleting",
+      "featureTitle": "Add basic layer management for design elements (logos/text/shapes) placed on the clothing design canvas, including selecting an element, reordering layers (bring forward/send backward), duplicating, and deleting.",
+      "files": [
+        "frontend/src/components/designer/DesignCanvas2D.tsx",
+        "frontend/src/components/designer/LayersPanel.tsx",
+        "frontend/src/components/designer/SelectionToolbar.tsx",
+        "frontend/src/state/useDesignerState.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-provide-design-project-persistence-users-can-sign-in-with-internet-identity-and-save-multiple-named-projects-each-project-stores-garment-type-base-colors-and-all-placed-elements-including-embedded-logo-data-or-references-and-can-be-reopened-and-edited-later",
+      "featureTitle": "Provide design project persistence: users can sign in with Internet Identity and save multiple named projects; each project stores garment type, base colors, and all placed elements (including embedded logo data or references) and can be reopened and edited later.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/auth/LoginButton.tsx",
+        "frontend/src/components/auth/ProfileSetupDialog.tsx",
+        "frontend/src/components/projects/NewProjectDialog.tsx",
+        "frontend/src/components/projects/ProjectList.tsx",
+        "frontend/src/hooks/useCurrentUserProfile.ts",
+        "frontend/src/hooks/useProjects.ts",
+        "frontend/src/pages/DesignerPage.tsx",
+        "frontend/src/pages/ProjectGalleryPage.tsx",
+        "frontend/src/state/projectSerialization.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-an-export-flow-for-clothing-designs-users-can-export-the-final-design-as-a-png-image-at-a-consistent-resolution-including-the-garment-base-and-placed-elements-and-download-it-in-the-browser",
+      "featureTitle": "Add an export flow for clothing designs: users can export the final design as a PNG image at a consistent resolution, including the garment base and placed elements, and download it in the browser.",
+      "files": [
+        "frontend/src/components/designer/ExportDesignButton.tsx",
+        "frontend/src/pages/DesignerPage.tsx",
+        "frontend/src/utils/exportDesignPng.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-coherent-visual-theme-for-the-app-colors-typography-spacing-component-styling-and-apply-it-consistently-across-the-landing-page-designer-logo-maker-and-project-gallery-avoid-blue-purple-as-primary-brand-colors",
+      "featureTitle": "Create a coherent visual theme for the app (colors, typography, spacing, component styling) and apply it consistently across the landing page, designer, logo maker, and project gallery. Avoid blue & purple as primary brand colors.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/layout/AppLayout.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-basic-in-app-guidance-provide-a-short-onboarding-tip-panel-dismissible-in-the-designer-that-explains-how-to-add-a-logo-move-resize-change-colors-save-and-export",
+      "featureTitle": "Add basic in-app guidance: provide a short onboarding tip panel (dismissible) in the designer that explains how to add a logo, move/resize, change colors, save, and export.",
+      "files": [
+        "frontend/src/components/designer/OnboardingTips.tsx",
+        "frontend/src/pages/DesignerPage.tsx",
+        "frontend/src/utils/clientPersistence.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-use-generated-static-garment-base-images-as-selectable-templates-t-shirt-hoodie-cap-and-render-them-from-frontend-static-assets-not-via-backend",
+      "featureTitle": "Use generated static garment base images as selectable templates (T‑shirt, hoodie, cap) and render them from frontend static assets (not via backend).",
+      "files": [
+        "frontend/src/components/designer/DesignCanvas2D.tsx",
+        "frontend/src/components/designer/GarmentSelector.tsx",
+        "frontend/src/utils/garmentTemplates.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

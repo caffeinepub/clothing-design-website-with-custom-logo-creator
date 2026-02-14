@@ -1,2 +1,3 @@
-# clothing-design-website-with-custom-logo-creator
-Exported from Caffeine project: Clothing design website with custom logo creator
+## Clothing design website with custom logo creator
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

@@ -1,0 +1,335 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Clothing designer with logo maker, project gallery, and PNG export",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Responsive garment designer with selectable base (T‑shirt/hoodie/cap), base color controls, and a 2D design canvas with visible print bounds.",
+      "acceptanceCriteria": [
+        "User can pick one of the supported garment bases (T‑shirt, hoodie, cap).",
+        "User can change at least one base color for the selected garment.",
+        "A design canvas is available with visible garment bounds/print area for placing elements.",
+        "UI works on mobile and desktop layouts without horizontal overflow."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the app shell (layout + navigation) and wire required views (landing, designer, logo maker, project gallery) so they are reachable. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/LandingPage.tsx",
+          "operation": "create",
+          "description": "Create a responsive landing page that funnels users into starting a new design or opening the project gallery, without introducing extra top-level flows beyond the BuildRequest."
+        },
+        {
+          "path": "frontend/src/pages/DesignerPage.tsx",
+          "operation": "create",
+          "description": "Implement the main designer view: garment selector, base color control, and the 2D canvas area with visible garment bounds/print area overlay."
+        },
+        {
+          "path": "frontend/src/components/designer/GarmentSelector.tsx",
+          "operation": "create",
+          "description": "Provide garment base selection UI (T‑shirt, hoodie, cap) and notify the designer state when changed."
+        },
+        {
+          "path": "frontend/src/components/designer/BaseColorPicker.tsx",
+          "operation": "create",
+          "description": "Provide at least one base color control for the selected garment and apply it consistently in the designer rendering."
+        },
+        {
+          "path": "frontend/src/components/designer/DesignCanvas2D.tsx",
+          "operation": "create",
+          "description": "Create the 2D design canvas component that renders the garment template, a visible print/garment bounds overlay, and positioned design elements."
+        },
+        {
+          "path": "frontend/src/state/designerTypes.ts",
+          "operation": "create",
+          "description": "Define shared frontend types for garment selection, base colors, canvas elements, and serialization needed across designer/logo maker/export."
+        },
+        {
+          "path": "frontend/src/state/useDesignerState.ts",
+          "operation": "create",
+          "description": "Centralize designer state (selected garment, base colors, elements, selection) and expose actions used across the designer UI."
+        },
+        {
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "Ensure the app renders the new App component and that overall layout remains responsive; keep QueryClientProvider and InternetIdentityProvider intact."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Logo maker for text and basic shapes with PNG export (transparent background) and image upload; place created/uploaded logos into the clothing designer with move/resize/rotate.",
+      "acceptanceCriteria": [
+        "User can create a logo from text (choose font, size, color) and at least two shape types (e.g., circle and rectangle) on a logo canvas.",
+        "User can export the created logo as a PNG with transparent background.",
+        "User can upload an image file (PNG/JPG/SVG) to use as a logo.",
+        "User can place the created or uploaded logo onto the clothing design canvas, move it, resize it, and rotate it."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/LogoMakerPage.tsx",
+          "operation": "create",
+          "description": "Implement the logo maker page with a dedicated logo canvas, controls for text/shapes, an upload option, and an export action that returns PNG data usable by the designer."
+        },
+        {
+          "path": "frontend/src/components/logo-maker/LogoCanvas2D.tsx",
+          "operation": "create",
+          "description": "Create a 2D logo canvas supporting editable text plus at least two basic shape types (e.g., circle and rectangle), and selection/manipulation suitable for later export."
+        },
+        {
+          "path": "frontend/src/components/logo-maker/LogoControlsPanel.tsx",
+          "operation": "create",
+          "description": "Add UI controls for logo creation: text font/size/color, shape add/remove, and image upload selection."
+        },
+        {
+          "path": "frontend/src/components/logo-maker/LogoExportButton.tsx",
+          "operation": "create",
+          "description": "Implement PNG export with transparent background from the logo canvas and provide a callback to insert the exported logo into the clothing design canvas."
+        },
+        {
+          "path": "frontend/src/utils/imageImport.ts",
+          "operation": "create",
+          "description": "Add utilities for validating uploads (PNG/JPG/SVG) and converting them into a format the canvases can render and serialize (e.g., data URLs)."
+        },
+        {
+          "path": "frontend/src/components/designer/DesignCanvas2D.tsx",
+          "operation": "modify",
+          "description": "Add support for placing created/uploaded logo images as elements on the clothing canvas with move/resize/rotate interactions."
+        },
+        {
+          "path": "frontend/src/state/useDesignerState.ts",
+          "operation": "modify",
+          "description": "Add actions to insert a logo element (from uploaded file or logo maker export) and to update element transforms (position/scale/rotation)."
+        },
+        {
+          "path": "frontend/package.json",
+          "operation": "modify",
+          "description": "Add/adjust any necessary frontend dependencies for 2D canvas editing and PNG export used by the designer and logo maker (keep footprint minimal)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Layer management for design elements on the clothing canvas: select, bring forward/send backward, duplicate, delete, and reflect changes immediately.",
+      "acceptanceCriteria": [
+        "User can click/tap to select a placed element and see selection handles.",
+        "User can bring an element forward/backward in z-order.",
+        "User can duplicate an element and delete an element.",
+        "Layer changes are reflected immediately on the canvas."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/designer/LayersPanel.tsx",
+          "operation": "create",
+          "description": "Add a layers panel listing elements with controls to reorder (bring forward/send backward), duplicate, and delete."
+        },
+        {
+          "path": "frontend/src/components/designer/SelectionToolbar.tsx",
+          "operation": "create",
+          "description": "Provide contextual actions for the currently selected element (duplicate, delete, forward/backward), optimized for mobile and desktop."
+        },
+        {
+          "path": "frontend/src/components/designer/DesignCanvas2D.tsx",
+          "operation": "modify",
+          "description": "Render selection handles for the active element and ensure canvas z-order reflects the layer order from state."
+        },
+        {
+          "path": "frontend/src/state/useDesignerState.ts",
+          "operation": "modify",
+          "description": "Implement element selection state and layer actions (reorder, duplicate, delete) with immediate updates to the rendered canvas."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Internet Identity sign-in and per-user project gallery to create, save, open, and delete named design projects via backend capabilities.",
+      "acceptanceCriteria": [
+        "User can sign in/out with Internet Identity.",
+        "Signed-in user can create a new project, name it, and save it.",
+        "User can see a list of their saved projects and open one to restore the full design state.",
+        "User can delete a saved project.",
+        "Backend enforces per-user ownership (a user cannot read or modify another user’s projects)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/auth/LoginButton.tsx",
+          "operation": "create",
+          "description": "Create a login/logout control using Internet Identity. Use the authorization component guidance for login/logout behavior and clearing cached data; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/auth/ProfileSetupDialog.tsx",
+          "operation": "create",
+          "description": "Prompt for a human-readable name on first login and save it via the backend user profile functions. Use the authorization component guidance to avoid showing principal id; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useCurrentUserProfile.ts",
+          "operation": "create",
+          "description": "Add a React Query hook to fetch getCallerUserProfile with proper loading semantics (avoid modal flash) per authorization component guidance; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useProjects.ts",
+          "operation": "create",
+          "description": "Implement React Query hooks/mutations for listing, creating, opening (fetching), updating (saving), and deleting projects using the existing backend interface."
+        },
+        {
+          "path": "frontend/src/pages/ProjectGalleryPage.tsx",
+          "operation": "create",
+          "description": "Create a signed-in project gallery that lists saved projects, supports create (named), open (restore full design state), save updates, and delete."
+        },
+        {
+          "path": "frontend/src/components/projects/ProjectList.tsx",
+          "operation": "create",
+          "description": "Render the project list UI with open and delete actions and show last modified metadata."
+        },
+        {
+          "path": "frontend/src/components/projects/NewProjectDialog.tsx",
+          "operation": "create",
+          "description": "Provide UI to create a new named project (select garment + base color defaults) and transition into the designer."
+        },
+        {
+          "path": "frontend/src/state/projectSerialization.ts",
+          "operation": "create",
+          "description": "Create serialization/mapping helpers between backend Project shape and the frontend designer state (including embedded logo data or references required to restore designs)."
+        },
+        {
+          "path": "frontend/src/pages/DesignerPage.tsx",
+          "operation": "modify",
+          "description": "Wire save/open flows: load a project into designer state, allow saving updates back to backend, and ensure the UI requires sign-in before accessing project data. Use the authorization component guidance for access control UI; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add navigation/routes for project gallery and designer that incorporate sign-in gating, and include login/profile setup UI in the global layout. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Export final clothing design as a downloadable PNG at a consistent, fixed resolution per garment including base template and all placed elements.",
+      "acceptanceCriteria": [
+        "User can click an Export button to download a PNG.",
+        "Exported PNG includes the selected garment base and all placed elements as seen on screen.",
+        "Export resolution is consistent (define and use a fixed output size per garment, e.g., 2000x2000)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/designer/ExportDesignButton.tsx",
+          "operation": "create",
+          "description": "Add an Export button that generates a PNG download at a fixed output size per garment (e.g., 2000x2000), matching the on-screen composition."
+        },
+        {
+          "path": "frontend/src/utils/exportDesignPng.ts",
+          "operation": "create",
+          "description": "Implement the export utility to render the garment base + elements to an offscreen canvas at the fixed resolution and trigger a browser download."
+        },
+        {
+          "path": "frontend/src/pages/DesignerPage.tsx",
+          "operation": "modify",
+          "description": "Wire the export control into the designer and ensure export includes garment template + all elements as currently arranged."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Coherent visual theme and design system applied across landing, designer, logo maker, and project gallery; avoid blue/purple as primary brand colors.",
+      "acceptanceCriteria": [
+        "All pages share a consistent design system (type scale, spacing, button styles, surfaces).",
+        "Primary theme is not blue/purple-dominant.",
+        "Key flows (start project, create logo, design garment, save, export) are visually clear and accessible (sufficient contrast for text/buttons)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Define the global theme tokens (CSS variables used by Tailwind/shadcn patterns) and base typography/spacing rules, choosing a non-blue/non-purple primary palette and ensuring accessible contrast."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Adjust Tailwind theme extensions if needed to align with the new design tokens and ensure consistent styling across pages."
+        },
+        {
+          "path": "frontend/src/components/layout/AppLayout.tsx",
+          "operation": "create",
+          "description": "Create a shared layout wrapper (header, navigation, content container) to enforce consistent spacing and responsive behavior across all required pages."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Apply the shared AppLayout to landing, designer, logo maker, and project gallery so styling is consistent and responsive."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Dismissible onboarding tip panel in the designer that explains core controls and persists dismissed state per browser.",
+      "acceptanceCriteria": [
+        "Designer shows a short tip panel on first visit (per browser) and it can be dismissed.",
+        "Tips reference the actual controls present in the UI.",
+        "Dismissed state persists in local storage (or equivalent client persistence)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/designer/OnboardingTips.tsx",
+          "operation": "create",
+          "description": "Add a dismissible tip panel for the designer that references the actual UI controls (add logo, move/resize, change colors, save, export) and is optimized for mobile/desktop."
+        },
+        {
+          "path": "frontend/src/utils/clientPersistence.ts",
+          "operation": "create",
+          "description": "Provide a small utility for local storage persistence (e.g., get/set boolean flags) used for onboarding dismissed state."
+        },
+        {
+          "path": "frontend/src/pages/DesignerPage.tsx",
+          "operation": "modify",
+          "description": "Wire the onboarding tips into the designer and persist the dismissed state so it only shows on first visit per browser."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Use generated static garment base images as templates loaded from frontend assets and swapped on selection without reload.",
+      "acceptanceCriteria": [
+        "Garment base images are stored under frontend/public/assets/generated and loaded directly by the frontend.",
+        "Selecting a garment swaps the underlying template image on the canvas without full page reload.",
+        "Templates have transparent background or consistent backdrop so placed logos remain clearly visible."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/garment-tshirt.dim_2000x2000.png",
+          "operation": "create",
+          "description": "Add the generated T‑shirt template asset at frontend/public/assets/generated/garment-tshirt.dim_2000x2000.png and ensure it is referenced as a static asset by the designer."
+        },
+        {
+          "path": "frontend/public/assets/generated/garment-hoodie.dim_2000x2000.png",
+          "operation": "create",
+          "description": "Add the generated hoodie template asset at frontend/public/assets/generated/garment-hoodie.dim_2000x2000.png and ensure it is referenced as a static asset by the designer."
+        },
+        {
+          "path": "frontend/public/assets/generated/garment-cap.dim_2000x2000.png",
+          "operation": "create",
+          "description": "Add the generated cap template asset at frontend/public/assets/generated/garment-cap.dim_2000x2000.png and ensure it is referenced as a static asset by the designer."
+        },
+        {
+          "path": "frontend/src/utils/garmentTemplates.ts",
+          "operation": "create",
+          "description": "Centralize garment template asset mappings (type -> static asset path + fixed export dimensions) so selection swaps the underlying template without a page reload."
+        },
+        {
+          "path": "frontend/src/components/designer/DesignCanvas2D.tsx",
+          "operation": "modify",
+          "description": "Load the selected garment template from static assets and swap it dynamically when the user changes garment type, keeping placed elements visible and unaffected."
+        },
+        {
+          "path": "frontend/src/components/designer/GarmentSelector.tsx",
+          "operation": "modify",
+          "description": "Wire garment selection changes to update the template used by the canvas immediately without full page reload."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Website that lets users design clothing items and create/upload custom logos.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Flat T‑shirt template illustration with transparent background (garment-tshirt.dim_2000x2000.png)\n- Flat hoodie template illustration with transparent background (garment-hoodie.dim_2000x2000.png)\n- Flat cap template illustration with transparent background (garment-cap.dim_2000x2000.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-responsive-web-app-that-lets-a-user-design-a-clothing-item-by-selecting-a-garment-base-at-minimum-t-shirt-hoodie-cap-and-customizing-it-with-colors-and-placed-elements-on-a-2d-design-canvas",
+      "title": "Create a responsive web app that lets a user design a clothing item by selecting a garment base (at minimum: T‑shirt, hoodie, cap) and customizing it with colors and placed elements on a 2D design canvas.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-logo-maker-tool-that-allows-users-to-create-a-simple-logo-from-text-and-basic-shapes-export-it-and-use-it-inside-the-clothing-design-canvas-include-an-option-to-upload-an-existing-image-as-a-logo",
+      "title": "Implement a logo maker tool that allows users to create a simple logo from text and basic shapes, export it, and use it inside the clothing design canvas. Include an option to upload an existing image as a logo.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-basic-layer-management-for-design-elements-logos-text-shapes-placed-on-the-clothing-design-canvas-including-selecting-an-element-reordering-layers-bring-forward-send-backward-duplicating-and-deleting",
+      "title": "Add basic layer management for design elements (logos/text/shapes) placed on the clothing design canvas, including selecting an element, reordering layers (bring forward/send backward), duplicating, and deleting.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-provide-design-project-persistence-users-can-sign-in-with-internet-identity-and-save-multiple-named-projects-each-project-stores-garment-type-base-colors-and-all-placed-elements-including-embedded-logo-data-or-references-and-can-be-reopened-and-edited-later",
+      "title": "Provide design project persistence: users can sign in with Internet Identity and save multiple named projects; each project stores garment type, base colors, and all placed elements (including embedded logo data or references) and can be reopened and edited later.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-export-flow-for-clothing-designs-users-can-export-the-final-design-as-a-png-image-at-a-consistent-resolution-including-the-garment-base-and-placed-elements-and-download-it-in-the-browser",
+      "title": "Add an export flow for clothing designs: users can export the final design as a PNG image at a consistent resolution, including the garment base and placed elements, and download it in the browser.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-coherent-visual-theme-for-the-app-colors-typography-spacing-component-styling-and-apply-it-consistently-across-the-landing-page-designer-logo-maker-and-project-gallery-avoid-blue-purple-as-primary-brand-colors",
+      "title": "Create a coherent visual theme for the app (colors, typography, spacing, component styling) and apply it consistently across the landing page, designer, logo maker, and project gallery. Avoid blue & purple as primary brand colors.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-basic-in-app-guidance-provide-a-short-onboarding-tip-panel-dismissible-in-the-designer-that-explains-how-to-add-a-logo-move-resize-change-colors-save-and-export",
+      "title": "Add basic in-app guidance: provide a short onboarding tip panel (dismissible) in the designer that explains how to add a logo, move/resize, change colors, save, and export.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-use-generated-static-garment-base-images-as-selectable-templates-t-shirt-hoodie-cap-and-render-them-from-frontend-static-assets-not-via-backend",
+      "title": "Use generated static garment base images as selectable templates (T‑shirt, hoodie, cap) and render them from frontend static assets (not via backend).",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Build a website for users to design clothes and create/use their own logo in the design",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Backend data model and APIs: implement Motoko types and CRUD methods to store user projects and project metadata, using stable storage to persist across upgrades.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Clothing design website with custom logo creator",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
